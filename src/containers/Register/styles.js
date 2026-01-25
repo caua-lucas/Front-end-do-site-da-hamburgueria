@@ -14,7 +14,7 @@ export const Container = styled.div `
 `
 
 
-export const Logo = styled.img `
+export const RegisterImage = styled.img `
     height:70%;
 
 `
@@ -50,7 +50,7 @@ export const Title = styled.h1`
     line-height: 28px;
     color:#ffffff;
     text-align: center;
-    margin-top: 40px;
+    margin-top: 10px;
 `
 
 
@@ -60,6 +60,7 @@ export const Label = styled.p`
     font-size: 12px;
     line-height: 14px;
     color:#ffffff;
+    margin-top:${props => (props.error ? '12px': '28px')} ;
     margin-top: 28px;
 
 `
