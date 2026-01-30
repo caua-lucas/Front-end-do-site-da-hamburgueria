@@ -9,6 +9,7 @@ import * as Yup from "yup"
 import RegisterImg from '../../assets/fire-burger.svg'
 import { toast, Bounce } from 'react-toastify'
 import { ToastContainer } from 'react-toastify';
+import {Link} from 'react-router-dom'
 
 
 
@@ -79,7 +80,7 @@ const onSubmit = async (clientData) => {
 
                 <Button  type="submit" style={{marginTop:15, marginBottom:18}} >Sign Up</Button> 
                 </form>
-                <SignInLink>Já possui conta? <a>Sign In</a></SignInLink>
+                <SignInLink>Já possui conta? {''} <Link style={{color:'white'}} to="/login" >Sign In</Link></SignInLink>
             </ContainerItems>
 
         </Container>
