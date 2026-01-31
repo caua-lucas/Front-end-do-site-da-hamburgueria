@@ -3,17 +3,18 @@ import { Container,Logo,ContainerItems,Input,Label,SignInLink,Title,Error } from
 import LoginImg from '../../assets/login-burger.svg'
 import Button from '../../components/Button'
 import LogoImg from '../../assets/logo.svg'
-import { useForm, } from "react-hook-form"
+import { useForm } from "react-hook-form"
 import { yupResolver } from "@hookform/resolvers/yup"
 import api from '../../services/api'
 import * as Yup from "yup"
 import {useUser} from '../../hooks/UserContext'
 import { toast, Bounce } from 'react-toastify'
 import { ToastContainer } from 'react-toastify';
-import {Link} from 'react-router-dom'
+import {Link, useNavigate} from 'react-router-dom'
 
 
 function Login() {
+    const navigate = useNavigate()
     const {putUserData, userData} = useUser()
         const schema = Yup.object().shape({
             email: Yup.string().email("Digite um email válido").required("O e-mail é obrigatório"),
@@ -43,6 +44,10 @@ const onSubmit = async (clientData) => {
   )
 
   putUserData(data)
+  setTimeout(()=>{
+      navigate('/')
+  },1000)
+
 
 }
 
