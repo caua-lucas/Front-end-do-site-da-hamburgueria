@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-export const Categories = styled.div`
+export const Offers = styled.div`
     img {
     margin-top: 80px;
     width: 250px;
@@ -8,11 +8,12 @@ export const Categories = styled.div`
     object-fit: cover;
     border-radius: 10px;
     display: block;
+
   }
 
 `
 export const Container = styled.div`
-  background: #EEEEEE;
+  background: #FFFFFF;
 .rec.rec-arrow{
   background-color:#9758a6 ;
   color:#FFFFFF;
@@ -35,6 +36,15 @@ export const Container = styled.div`
 export const ContainerItemss = styled.div`
     display:flex;
     flex-direction: column;
+
+    p{
+      font-style: normal;
+      font-weight: bold;
+      font-size: 18px;
+      line-height: 120%;
+      color:#424242;
+      margin-top:3px;
+    }
 `
 export const Button = styled.button`
     margin-top: 16px;
@@ -58,8 +68,9 @@ export const Button = styled.button`
       opacity: 0.6;
     }
 `
-export const CategoryImg = styled.img`
+export const OffersImg = styled.img`
     display: block;
     margin: 0 auto;
+    margin-top: 30px;
 `
 
