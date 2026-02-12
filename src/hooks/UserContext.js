@@ -42,8 +42,6 @@ export const useUser = () => {
     return context
 }
 
-UserProvider.propTypes = {
-    children: PropTypes.node.isRequired
-}
+
 
 export default UserProvider

@@ -5,7 +5,7 @@ import api from '../../services/api'
 import Carousel from 'react-elastic-carousel';
 import { ContainerItems } from '../../containers/Login/styles';
 
-function CategoryCarrosel(){
+export function CategoryCarrosel(){
     const [categories, setCategories] = useState([])
     useEffect(()=>{
         async function loadCategories(){
@@ -40,4 +40,3 @@ const breakPoints = [
     )
 }
 
-export default CategoryCarrosel

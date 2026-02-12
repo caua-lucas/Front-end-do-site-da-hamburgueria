@@ -1,7 +1,7 @@
 import React from 'react'
 import { Container,RegisterImage,ContainerItems,Input,Label,SignInLink,Title,Error } from './styles';
 import LogoImg from '../../assets/logo.svg'
-import Button from '../../components/Button'
+import {Button} from '../../components'
 import { useForm, } from "react-hook-form"
 import { yupResolver } from "@hookform/resolvers/yup"
 import api from '../../services/api'
@@ -13,7 +13,7 @@ import {Link} from 'react-router-dom'
 
 
 
-function Register() {
+export function Register() {
         const schema = Yup.object().shape({
             name: Yup.string('O seu nome é obrigátorio').required('O seu nome é obrigátorio'),
             email: Yup.string().email("Digite um email válido").required("O e-mail é obrigatório"),
@@ -88,4 +88,3 @@ const onSubmit = async (clientData) => {
 }
 
 
-export default Register

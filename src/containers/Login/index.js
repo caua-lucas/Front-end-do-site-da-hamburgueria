@@ -1,7 +1,7 @@
 import React from 'react'
 import { Container,Logo,ContainerItems,Input,Label,SignInLink,Title,Error } from './styles';
 import LoginImg from '../../assets/login-burger.svg'
-import Button from '../../components/Button'
+import {Button} from '../../components'
 import LogoImg from '../../assets/logo.svg'
 import { useForm } from "react-hook-form"
 import { yupResolver } from "@hookform/resolvers/yup"
@@ -13,7 +13,7 @@ import { ToastContainer } from 'react-toastify';
 import {Link, useNavigate} from 'react-router-dom'
 
 
-function Login() {
+export function Login() {
     const navigate = useNavigate()
     const {putUserData, userData} = useUser()
         const schema = Yup.object().shape({
@@ -76,4 +76,3 @@ const onSubmit = async (clientData) => {
 }
 
 
-export default Login

@@ -1,0 +1,17 @@
+import react from  'react'
+import PropTypes from 'prop-types'
+import CartProvider from './CartContext'
+
+
+import UserProvider, { useProvider } from './UserContext'
+
+const AppProvider = ({children}) =>
+    <UserProvider>
+        <CartProvider>{children}</CartProvider>
+    </UserProvider>
+
+AppProvider.propTypes = {
+    children: PropTypes.node.isRequired
+}
+
+export default AppProvider

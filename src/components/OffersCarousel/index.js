@@ -6,7 +6,7 @@ import Carousel from 'react-elastic-carousel';
 import { ContainerItems } from '../../containers/Login/styles';
 import formatCurrency from '../../utils/formatCurrency';
 
-function OffersCarrosel(){
+export function OffersCarrosel(){
     const [offers, setOffers] = useState([])
     useEffect(()=>{
         async function loadOffers(){
@@ -44,4 +44,3 @@ const breakPoints = [
     )
 }
 
-export default OffersCarrosel
