@@ -31,7 +31,7 @@ const breakPoints = [
                  categories.map(category =>(
                     <ContainerItemss  key={category.id}>
                         <img src={category.url} alt="foto da categoria" />
-                        <Button>{category.name}</Button>
+                        <Button to={{pathname: '/produtos',state:{categoryId: category.id}}} >{category.name}</Button>
                     </ContainerItemss>
                 ))}
             </Carousel>

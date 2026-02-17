@@ -44,12 +44,13 @@ const onSubmit = async (clientData) => {
   )
 
   putUserData(data)
-  setTimeout(()=>{
-      navigate('/')
-  },1000)
-
-
-}
+setTimeout(() => {
+  if (data.admin) {
+    navigate('/pedidos')
+  } else {
+    navigate('/')
+  }
+}, 1000)}
 
 
 

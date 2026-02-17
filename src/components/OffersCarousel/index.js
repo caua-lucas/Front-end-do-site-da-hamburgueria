@@ -1,46 +1,69 @@
-import React,{useEffect, useState} from 'react'
+import React, { useEffect, useState } from 'react'
 import Offerss from '../../assets/offer.png'
-import {Container,Offers,OffersImg,Button,ContainerItemss} from './styles'
+import {
+    Container,
+    Offers,
+    OffersImg,
+    Button,
+    ContainerItemss
+} from './styles'
+import { useCart } from '../../hooks/CartContext'
 import api from '../../services/api'
-import Carousel from 'react-elastic-carousel';
-import { ContainerItems } from '../../containers/Login/styles';
-import formatCurrency from '../../utils/formatCurrency';
+import Carousel from 'react-elastic-carousel'
+import formatCurrency from '../../utils/formatCurrency'
+import { useNavigate } from 'react-router-dom'
 
-export function OffersCarrosel(){
+export function OffersCarrosel() {
     const [offers, setOffers] = useState([])
-    useEffect(()=>{
-        async function loadOffers(){
-            const {data} = await api.get('products')
+    const { putProductsInCart } = useCart()
+    const navigate = useNavigate()
+
+    useEffect(() => {
+        async function loadOffers() {
+            const { data } = await api.get('products')
             const onlyOffers = data.filter(product => product.offer)
             setOffers(onlyOffers)
         }
-         loadOffers()
-    },[])
 
-const breakPoints = [
-  { width: 1, itemsToShow: 1 },
-  { width: 500, itemsToShow: 2 },
-  { width: 768, itemsToShow: 3 },
-  { width: 1024, itemsToShow: 4 }
-];
+        loadOffers()
+    }, [])
 
+    const breakPoints = [
+        { width: 1, itemsToShow: 1 },
+        { width: 500, itemsToShow: 2 },
+        { width: 768, itemsToShow: 3 },
+        { width: 1024, itemsToShow: 4 }
+    ]
 
-    return(
+    return (
         <Container>
-            <OffersImg src={Offerss} alt="logo da oferta"/>
+            <OffersImg src={Offerss} alt="logo da oferta" />
+
             <Offers>
-            <Carousel itemsToShow={4} style={{width:'90%',marginLeft: '+70px' }} breakPoints={breakPoints}>{
-                 offers.map(product =>(
-                    <ContainerItemss  key={product.id}>
-                        <img src={product.url} alt="foto do produto" />
-                        <p>{product.name}</p>
-                        <p>{formatCurrency(product.price)}</p>
-                        <Button>Peça Agora</Button>
-                    </ContainerItemss>
-                ))}
-            </Carousel>
+                <Carousel
+                    itemsToShow={4}
+                    style={{ width: '90%', marginLeft: '70px' }}
+                    breakPoints={breakPoints}
+                >
+                    {offers.map(product => (
+                        <ContainerItemss key={product.id}>
+                            <img src={product.url} alt="foto do produto" />
+                            <p>{product.name}</p>
+                            <p>{formatCurrency(product.price)}</p>
+
+                            <Button
+                                onClick={() => {
+                                    putProductsInCart(product)
+                                    navigate('/carrinho')
+                                }}
+                            >
+                                Peça Agora
+                            </Button>
+
+                        </ContainerItemss>
+                    ))}
+                </Carousel>
             </Offers>
         </Container>
     )
 }
-

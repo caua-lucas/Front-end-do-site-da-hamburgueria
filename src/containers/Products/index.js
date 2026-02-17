@@ -1,65 +1,88 @@
 import { useEffect, useState } from 'react'
 import ProductsLogo from '../../assets/products-logo.svg'
-import {Container,ProductsImg,CategoryButton, CategoriesMenu,ProductsContainer } from './styles'
+import {
+    Container,
+    ProductsImg,
+    CategoryButton,
+    CategoriesMenu,
+    ProductsContainer
+} from './styles'
 import api from '../../services/api'
-import {CardProducts} from '../../components'
+import { CardProducts } from '../../components'
 import formatCurrency from '../../utils/formatCurrency'
+import PropTypes from 'prop-types'
 
+export function Products({ location }) {
+    const initialCategory = location?.state?.categoryId ?? 0    //Elvis Operator:operador que verifica se a oéração existe para continuar navegando (?)
 
+    const [categories, setCategories] = useState([])
+    const [products, setProducts] = useState([])
+    const [filteredProducts, setFilteredProducts] = useState([])
+    const [activeCategory, setActiveCategory] = useState(initialCategory)
 
-export function Products(){
-        const [categories, setCategories] = useState([])
-        const [products, setProducts] = useState([])
-        const [filteredProducts, setFilteredProducts] = useState([])
-        const [activeCategory, setActiveCategory] = useState(0)
-        useEffect(()=>{
-            async function loadCategories(){
-                const {data} = await api.get('categories')
-                const newCategories = [{id:0,name:'Todas'}, ...data]
-                setCategories(newCategories)
-            }
-            
+    useEffect(() => {
+        async function loadCategories() {
+            const { data } = await api.get('categories')
+            const newCategories = [{ id: 0, name: 'Todas' }, ...data]
+            setCategories(newCategories)
+        }
 
         async function loadProducts() {
             const { data: allProducts } = await api.get('products')
 
-         const newProducts =  allProducts.map(product => {
-                return {...product, formatedPrice:formatCurrency(product.price)}
+            const newProducts = allProducts.map(product => {
+                return {
+                    ...product,
+                    formatedPrice: formatCurrency(product.price)
+                }
             })
 
             setProducts(newProducts)
-            }
+        }
 
-            loadCategories()
-            loadProducts()
-        }, [])
+        loadCategories()
+        loadProducts()
+    }, [])
 
-        useEffect(()=> {
-            if(activeCategory === 0){
-                setFilteredProducts(products)
-            }else{
-            const newFilteredProducts = products.filter(product => product.category_id === activeCategory)
+    useEffect(() => {
+        if (activeCategory === 0) {
+            setFilteredProducts(products)
+        } else {
+            const newFilteredProducts = products.filter(
+                product => product.category_id === activeCategory
+            )
 
             setFilteredProducts(newFilteredProducts)
-            }
-        },[activeCategory,products])
-        
-    return(
+        }
+    }, [activeCategory, products])
+
+    return (
         <Container>
-            <ProductsImg src={ProductsLogo} alt="logo da pagina de produtos"/>
+            <ProductsImg src={ProductsLogo} alt="logo da pagina de produtos" />
+
             <CategoriesMenu>
-            {categories.map(category => (
-                <CategoryButton type="button" key={category.id} isActiveCategory={activeCategory === category.id} onClick={() => {setActiveCategory(category.id)}} >{category.name}</CategoryButton>
-            ))}
+                {categories.map(category => (
+                    <CategoryButton
+                        type="button"
+                        key={category.id}
+                        isActiveCategory={activeCategory === category.id}
+                        onClick={() => setActiveCategory(category.id)}
+                    >
+                        {category.name}
+                    </CategoryButton>
+                ))}
             </CategoriesMenu>
+
             <ProductsContainer>
-                {filteredProducts && filteredProducts.map(product => (
+                {filteredProducts.map(product => (
                     <CardProducts key={product.id} product={product} />
-                    
                 ))}
             </ProductsContainer>
-
         </Container>
     )
+}
+
+Products.propTypes = {
+    location: PropTypes.object
 }
 

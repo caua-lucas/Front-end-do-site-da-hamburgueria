@@ -6,7 +6,9 @@ import FormatCurrency from '../../utils/formatCurrency'
 
 
 export function CartItems(){
-    const {cartProducts,increaseProducts,decreaseProducts } = useCart()
+
+    const { cartProducts, increaseProducts, decreaseProducts } = useCart()
+
     console.log(cartProducts)
     return(
         <Container>
