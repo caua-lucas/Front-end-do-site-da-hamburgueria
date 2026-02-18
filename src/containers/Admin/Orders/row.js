@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {Container} from './styles'
+import {Container,ProductsImg} from './styles'
 import PropTypes from 'prop-types';
 import Box from '@mui/material/Box';
 import Collapse from '@mui/material/Collapse';
@@ -16,6 +16,7 @@ import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import { useEffect, useState } from 'react';
 import api from '../../../services/api'
+
 
 function Row({row}){
   const [open, setOpen] = React.useState(false);
@@ -65,7 +66,7 @@ function Row({row}){
                       <TableCell>{productRow.name}</TableCell>
                       <TableCell>{productRow.category}</TableCell>
                       <TableCell >
-                        <img src={productRow.url} />
+                        <ProductsImg src={productRow.url} />
                       </TableCell>
                     </TableRow>
                   ))}
