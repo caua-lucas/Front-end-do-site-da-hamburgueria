@@ -45,6 +45,21 @@ function Orders(){
           setRows(newRows)
         },[filteredOrders])
 
+        useEffect(() => {
+          if (activeStatus === 1) {
+                setFilteredOrders(orders)
+              } else {
+                const statusIndex = status.findIndex(sts => sts.id === activeStatus)
+
+                if (statusIndex !== -1) {
+                  const newFilteredOrders = orders.filter(
+                    order => order.status === status[statusIndex].value
+                  )
+                  setFilteredOrders(newFilteredOrders)
+                }
+              }
+            }, [orders, activeStatus])
+
         function handleStatus(status){
           if(status.id === 1){
               setFilteredOrders(orders)
@@ -74,7 +89,7 @@ function Orders(){
         </TableHead>
         <TableBody>
           {rows.map((row) => (
-            <Row key={row.orderId} row={row} />
+            <Row key={row.orderId} row={row} setOrders={setOrders} orders={orders} />
           ))}
         </TableBody>
       </Table>
