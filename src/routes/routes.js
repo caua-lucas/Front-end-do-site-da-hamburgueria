@@ -39,6 +39,13 @@ function AppRoutes() {
                     }
                 />
 
+                <Route path="/listar-produtos" element={
+                        <PrivateRoute isAdmin>
+                            <Admin />
+                        </PrivateRoute>
+                    }
+                    
+                />
             </Routes>
         </Router>
     )

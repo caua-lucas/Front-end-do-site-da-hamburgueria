@@ -1,14 +1,15 @@
 import React from 'react'
 import Orders from './Orders'
-import {Container,ItemContainer} from './styles'
+import {Container} from './styles'
 import { SiteMenuAdmin } from '../../components/SiteMenuAdmin'
+import ListProducts from './ListProducts'
 
 export function Admin(){
     return (
         <Container>
-            <ItemContainer />
          <SiteMenuAdmin/>
-        <Orders/>
+        {/* <Orders/> */}
+        <ListProducts/>
         </Container>
     )
 }
