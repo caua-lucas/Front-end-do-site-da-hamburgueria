@@ -1,6 +1,7 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import {Login,Register,Home,Products,Cart,Admin} from '../containers'
 import PrivateRoute from '../routes/private-route'
+import paths from '../constants/paths'
 
 function AppRoutes() {
     return (
@@ -31,7 +32,7 @@ function AppRoutes() {
                     
                 />
                 <Route
-                    path="/pedidos"
+                    path={paths.Order}
                     element={
                         <PrivateRoute isAdmin>
                             <Admin />
@@ -39,7 +40,7 @@ function AppRoutes() {
                     }
                 />
 
-                <Route path="/listar-produtos" element={
+                <Route path={paths.Products} element={
                         <PrivateRoute isAdmin>
                             <Admin />
                         </PrivateRoute>

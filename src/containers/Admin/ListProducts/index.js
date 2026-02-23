@@ -1,6 +1,7 @@
 import React,{useState, useEffect} from 'react'
-import {Container} from './styles'
+import {Container,Img,Edit} from './styles'
 import api from '../../../services/api'
+import formatCurrency from '../../../utils/formatCurrency'
 
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -9,6 +10,10 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
+
+import CheckBoxIcon from '@mui/icons-material/CheckBox';
+import CancelIcon from '@mui/icons-material/Cancel';
+import EditIcon from '@mui/icons-material/Edit';
 
 
 export function ListProducts(){
@@ -21,6 +26,13 @@ export function ListProducts(){
               }
             loadOrders()
             }, [])
+
+    function isOffer(offerStatus){
+      if(offerStatus){
+       return <CheckBoxIcon style={{color:'#228B22'}}/>
+      }
+      return <CancelIcon style={{color:'#CC1717'}}/>
+    }
 
     return(
         <Container>
@@ -36,18 +48,18 @@ export function ListProducts(){
           </TableRow>
         </TableHead>
         <TableBody>
-          {products.map((product) => (
+          {products && products.map((product) => (
             <TableRow key={product.id}
               sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
             >
               <TableCell component="th" scope="row">
                 {product.name}
               </TableCell>
-              <TableCell>{product.price}</TableCell>
-              <TableCell>{product.offer}</TableCell>
-              <TableCell><img src={product.url} alt="imagem produto" /></TableCell>
+              <TableCell>{formatCurrency(product.price)}</TableCell>
+              <TableCell align='center'>{isOffer(product.offer)}</TableCell>
+              <TableCell align='center'><Img src={product.url} alt="imagem produto" /></TableCell>
               <TableCell></TableCell>
-              <TableCell><button>Editar</button></TableCell>
+              <TableCell align="center"><Edit/></TableCell>
             </TableRow>
           ))}
         </TableBody>

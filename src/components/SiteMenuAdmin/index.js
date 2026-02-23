@@ -3,16 +3,18 @@ import {Container,ItemContainer,ListLink} from './styles'
 import listLinks from './menu-list'
 import LogoutIcon from '@mui/icons-material/Logout';
 import {useUser} from '../../hooks/UserContext'
+import PropTypes from 'prop-types';
 
 
 
-export function SiteMenuAdmin(){
+export function SiteMenuAdmin({location}){
     const {logout} = useUser()
 
     return(
         <Container>
+            <hr></hr>
             {listLinks.map(item =>(
-            <ItemContainer key={item.id} isActive={true}>
+            <ItemContainer key={item.id} isActive={location.pathname === item.link}>
                 <item.icon  className='icon'/>
                 <ListLink to={item.link}>{item.label}</ListLink>
             </ItemContainer>
@@ -26,3 +28,8 @@ export function SiteMenuAdmin(){
     )
 }
 
+SiteMenuAdmin.propTypes = {
+
+    location: PropTypes.object
+
+}
