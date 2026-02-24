@@ -47,6 +47,14 @@ function AppRoutes() {
                     }
                     
                 />
+
+                                <Route path={paths.NewProduct} element={
+                        <PrivateRoute isAdmin>
+                            <Admin />
+                        </PrivateRoute>
+                    }
+                    
+                />
             </Routes>
         </Router>
     )

@@ -9,6 +9,9 @@ export const Container = styled.div`
     `
 
 export const ContainerItems = styled.div`
-padding:20px;
-
+    display: flex;
+    flex: 1;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
 `
