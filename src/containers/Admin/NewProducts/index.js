@@ -17,11 +17,11 @@ export function NewProduct(){
                 price: Yup.string().required('Digite o preço do produto'),
                 category: Yup.object().required('Escolha uma categoria'),
                 file: Yup.mixed().test('required', 'Carregue um arquivo', value =>{
-                    return value && value.length > 0
+                    return value?.length > 0
                 }).test('fileSize', 'Carregue arquivos de até 2MG', value=>{
-                    return value && value[0].size <= 200000
+                    return value[0]?.size <= 200000
                 }).test('type', 'Carregue apenas arquivos JPEG', value =>{
-                    return value && value[0].type === 'image/jpeg'
+                    return value[0]?.type === 'image/jpeg'
                 })
 
             })
