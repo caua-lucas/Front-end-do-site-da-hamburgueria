@@ -1,7 +1,7 @@
 import React from 'react'
-import { Container,Logo,ContainerItems,Input,Label,SignInLink,Title,Error } from './styles';
+import { Container,Logo,ContainerItems,Input,Label,SignInLink,Title } from './styles';
 import LoginImg from '../../assets/login-burger.svg'
-import {Button} from '../../components'
+import {Button, ErrorMessage} from '../../components'
 import LogoImg from '../../assets/logo.svg'
 import { useForm } from "react-hook-form"
 import { yupResolver } from "@hookform/resolvers/yup"
@@ -11,7 +11,6 @@ import {useUser} from '../../hooks/UserContext'
 import { toast, Bounce } from 'react-toastify'
 import { ToastContainer } from 'react-toastify';
 import {Link, useNavigate} from 'react-router-dom'
-
 
 export function Login() {
     const navigate = useNavigate()
@@ -63,10 +62,10 @@ setTimeout(() => {
                 <form  onSubmit={handleSubmit(onSubmit)}>
                 <Label>Email</Label>
                 <Input type= "email "{...register("email")} error={errors.email?.message}/>
-                 <Error>{errors.email?.message}</Error>
+                 <ErrorMessage>{errors.email?.message}</ErrorMessage>
                 <Label>Senha</Label>
                 <Input type="password"  {...register("password")}  error={errors.password?.message} />
-                <Error>{errors.password?.message}</Error>
+                <ErrorMessage>{errors.password?.message}</ErrorMessage>
                 <Button   type="submit" style={{marginTop:20, marginBottom:25}} >Sign In</Button> 
                 </form>
                 <SignInLink>Não possui conta?{''} <Link style={{color:'white'}} to="/cadastro">Sign Up</Link></SignInLink>

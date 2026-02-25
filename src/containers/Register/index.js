@@ -1,7 +1,7 @@
 import React from 'react'
-import { Container,RegisterImage,ContainerItems,Input,Label,SignInLink,Title,Error } from './styles';
+import { Container,RegisterImage,ContainerItems,Input,Label,SignInLink,Title } from './styles';
 import LogoImg from '../../assets/logo.svg'
-import {Button} from '../../components'
+import {Button,ErrorMessage} from '../../components'
 import { useForm, } from "react-hook-form"
 import { yupResolver } from "@hookform/resolvers/yup"
 import api from '../../services/api'
@@ -59,15 +59,15 @@ const onSubmit = async (clientData) => {
                 <form  onSubmit={handleSubmit(onSubmit)}>
                 <Label error={errors.name}>Nome</Label>
                 <Input type="text" {...register("name")} error={errors.name} />
-                <Error>{errors.name?.message}</Error>
+                <ErrorMessage>{errors.name?.message}</ErrorMessage>
 
                 <Label error={errors.email}>Email</Label>
                 <Input type="email" {...register("email")} error={errors.email} />
-                <Error>{errors.email?.message}</Error>
+                <ErrorMessage>{errors.email?.message}</ErrorMessage>
 
                 <Label error={errors.password}>Senha</Label>
                 <Input type="password" {...register("password")} error={errors.password} />
-                <Error>{errors.password?.message}</Error>
+                <ErrorMessage>{errors.password?.message}</ErrorMessage>
 
                 <Label error={errors.confirmPassword}>Confirmar Senha</Label>
                 <Input
@@ -75,7 +75,7 @@ const onSubmit = async (clientData) => {
                 {...register("confirmPassword")}
                 error={errors.confirmPassword}
                 />
-                <Error>{errors.confirmPassword?.message}</Error>
+                <ErrorMessage>{errors.confirmPassword?.message}</ErrorMessage>
 
 
                 <Button  type="submit" style={{marginTop:15, marginBottom:18}} >Sign Up</Button> 

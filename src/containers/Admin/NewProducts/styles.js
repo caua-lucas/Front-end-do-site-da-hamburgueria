@@ -26,6 +26,7 @@ export const Input= styled.input`
     margin-bottom: 25px;
     width: 100%;
     min-width: 280px;
+    color:#000000;
 `
 export const Label = styled.div`
     font-size: 14px;
