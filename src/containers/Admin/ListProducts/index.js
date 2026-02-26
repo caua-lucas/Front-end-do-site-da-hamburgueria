@@ -11,13 +11,18 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 
+
 import CheckBoxIcon from '@mui/icons-material/CheckBox';
 import CancelIcon from '@mui/icons-material/Cancel';
 import EditIcon from '@mui/icons-material/Edit';
-
+import EditProduct from '../EditProduct';
+import { useNavigate } from 'react-router-dom'
+import paths from '../../../constants/paths'
 
 export function ListProducts(){
     const [products, setproducts] = useState([])
+    const navigate = useNavigate()
+    
 
           useEffect(() => {
               async function loadOrders() {
@@ -32,6 +37,10 @@ export function ListProducts(){
        return <CheckBoxIcon style={{color:'#228B22'}}/>
       }
       return <CancelIcon style={{color:'#CC1717'}}/>
+    }
+    
+    function editProduct(product){
+      navigate(paths.EditProduct,{product})
     }
 
     return(
@@ -59,7 +68,7 @@ export function ListProducts(){
               <TableCell align='center'>{isOffer(product.offer)}</TableCell>
               <TableCell align='center'><Img src={product.url} alt="imagem produto" /></TableCell>
               <TableCell></TableCell>
-              <TableCell align="center"><Edit/></TableCell>
+              <TableCell align="center"><Edit onClick={() => editProduct(product)}/></TableCell>
             </TableRow>
           ))}
         </TableBody>

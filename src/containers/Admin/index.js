@@ -6,6 +6,7 @@ import ListProducts from './ListProducts'
 import { useLocation } from 'react-router-dom'
 import paths from '../../constants/paths'
 import NewProduct from './NewProducts'
+import EditProduct from './EditProduct'
 
 export function Admin() {
     const location = useLocation()
@@ -16,6 +17,7 @@ export function Admin() {
                 {location.pathname === paths.Order && (<Orders />)}
                 {location.pathname === paths.Products && (<ListProducts />)}
                 {location.pathname === paths.NewProduct && (<NewProduct />)}
+                {location.pathname === paths.EditProduct && (<EditProduct />)}
                 </ContainerItems></Container>
     )
 }

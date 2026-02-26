@@ -55,6 +55,13 @@ function AppRoutes() {
                     }
                     
                 />
+                                <Route path={paths.EditProduct} element={
+                        <PrivateRoute isAdmin>
+                            <Admin />
+                        </PrivateRoute>
+                    }
+                    
+                />
             </Routes>
         </Router>
     )
